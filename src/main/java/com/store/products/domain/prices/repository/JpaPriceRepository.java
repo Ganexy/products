@@ -6,9 +6,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
-
 @Repository
 public class JpaPriceRepository implements PriceRepository {
 
@@ -16,7 +13,7 @@ public class JpaPriceRepository implements PriceRepository {
     private EntityManager entityManager;
 
     @Override
-    public Price findApplicablePrice(Long productId, String brandId, String applicationDate) {
+    public Price findApplicablePrice(String productId, String brandId, String applicationDate) {
 
         var query = "SELECT p FROM Price p WHERE p.productId = :productId AND p.brandId = :brandId " +
                 "AND :applicationDate BETWEEN p.startDate AND p.endDate " +

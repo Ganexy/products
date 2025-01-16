@@ -8,8 +8,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/products")
 public class ProductsPriceController {
@@ -27,7 +25,7 @@ public class ProductsPriceController {
     })
     @GetMapping("/price")
     public ResponseEntity<PriceResponse> getPrice(
-            @RequestParam Long productId,
+            @RequestParam String productId,
             @RequestParam String brandId,
             @RequestParam String applicationDate
     ){
