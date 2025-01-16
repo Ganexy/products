@@ -1,42 +1,99 @@
 package com.store.products.domain.prices.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "PRICES")
 public class Price {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long brandId;
+    private Long id;
+
+    @Column(name = "BRAND_ID", nullable = false)
+    private String brandId;
+
+    @Column(name = "START_DATE", nullable = false)
+    private String startDate;
+
+    @Column(name = "END_DATE", nullable = false)
+    private String endDate;
+
+    @Column(name = "PRICE_LIST", nullable = false)
     private String priceList;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+
+    @Column(name = "PRODUCT_ID", nullable = false)
     private String productId;
-    private String priority;
+
+    @Column(name = "PRIORITY", nullable = false)
+    private Integer priority;
+
+    @Column(name = "PRICE", nullable = false)
     private String price;
+
+    @Column(name = "CURRENCY", nullable = false)
     private String currency;
 
-    public Price(Long brandId, String priceList, LocalDateTime startDate, LocalDateTime endDate, String productId, String priority, String price, String currency) {
+    public Price(){
+
+    }
+
+    public Price(
+            Long id,
+            String brandId,
+            String startDate,
+            String endDate,
+            String priceList,
+            String productId,
+            Integer priority,
+            String price,
+            String currency
+    ) {
+        this.id = id;
         this.brandId = brandId;
-        this.priceList = priceList;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.priceList = priceList;
         this.productId = productId;
         this.priority = priority;
         this.price = price;
         this.currency = currency;
     }
 
-    public Long getBrandId() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(Long brandId) {
+    public void setBrandId(String brandId) {
         this.brandId = brandId;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
     public String getPriceList() {
@@ -47,22 +104,6 @@ public class Price {
         this.priceList = priceList;
     }
 
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
-    }
-
     public String getProductId() {
         return productId;
     }
@@ -71,11 +112,11 @@ public class Price {
         this.productId = productId;
     }
 
-    public String getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(Integer priority) {
         this.priority = priority;
     }
 

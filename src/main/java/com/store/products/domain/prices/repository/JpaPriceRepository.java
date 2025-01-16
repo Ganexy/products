@@ -1,6 +1,7 @@
 package com.store.products.domain.prices.repository;
 
 import com.store.products.domain.prices.entity.Price;
+import com.store.products.infrastructure.rest.exception.PriceNotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -15,20 +16,23 @@ public class JpaPriceRepository implements PriceRepository {
     private EntityManager entityManager;
 
     @Override
-    public Optional<Price> findApplicablePrice(Long productId, String brandId, LocalDateTime applicationDate) {
+    public Price findApplicablePrice(Long productId, String brandId, String applicationDate) {
 
         var query = "SELECT p FROM Price p WHERE p.productId = :productId AND p.brandId = :brandId " +
                 "AND :applicationDate BETWEEN p.startDate AND p.endDate " +
                 "ORDER BY p.priority DESC";
 
-        var debug = entityManager.createQuery(query, Price.class)
+        return entityManager.createQuery(query, Price.class)
                 .setParameter("productId", productId)
                 .setParameter("brandId", brandId)
                 .setParameter("applicationDate", applicationDate)
                 .setMaxResults(1)
                 .getResultStream()
-                .findFirst();
-
-        return debug;
+                .findFirst()
+                .orElseThrow(() -> new PriceNotFoundException(
+                        "No price found for productId: " + productId +
+                        ", brandId: " + brandId +
+                        ", applicationDate: " + applicationDate
+                ));
     }
 }

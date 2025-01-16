@@ -1,7 +1,7 @@
 package com.store.products.infrastructure.rest.prices;
 
 import com.store.products.application.prices.handler.GetPricesHandler;
-import com.store.products.infrastructure.rest.prices.dto.PricesResponse;
+import com.store.products.infrastructure.rest.prices.dto.PriceResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -26,7 +26,7 @@ public class ProductsPriceController {
             @ApiResponse(responseCode = "500", description = "Internal server error.")
     })
     @GetMapping("/prices")
-    public ResponseEntity<Optional<PricesResponse>> getPrice(
+    public ResponseEntity<PriceResponse> getPrice(
             @RequestParam Long productId,
             @RequestParam String brandId,
             @RequestParam String applicationDate
