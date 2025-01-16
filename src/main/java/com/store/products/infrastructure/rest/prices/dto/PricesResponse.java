@@ -3,14 +3,14 @@ package com.store.products.infrastructure.rest.prices.dto;
 import java.time.LocalDateTime;
 
 public class PricesResponse {
-    private String productId;
+    private Long productId;
     private String brandId;
     private String priceList;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private String price;
 
-    public PricesResponse(String productId, String brandId, String priceList, LocalDateTime startDate, LocalDateTime endDate, String price) {
+    public PricesResponse(Long productId, String brandId, String priceList, LocalDateTime startDate, LocalDateTime endDate, String price) {
         this.productId = productId;
         this.brandId = brandId;
         this.priceList = priceList;
@@ -19,11 +19,11 @@ public class PricesResponse {
         this.price = price;
     }
 
-    public String getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
