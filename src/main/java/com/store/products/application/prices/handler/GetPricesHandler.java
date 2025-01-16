@@ -4,8 +4,6 @@ import com.store.products.domain.prices.repository.PriceRepository;
 import com.store.products.infrastructure.rest.prices.dto.PriceResponse;
 import com.store.products.infrastructure.rest.prices.mapper.PricesMapper;
 
-import java.util.Optional;
-
 public class GetPricesHandler {
 
     private final PriceRepository priceRepository;
@@ -16,9 +14,9 @@ public class GetPricesHandler {
         this.mapper = mapper;
     }
 
-    public PriceResponse handle(Long productId, String brandId, String applicationDate) {
-
-        return mapper.toResponse(priceRepository.findApplicablePrice(productId, brandId, applicationDate));
+    public PriceResponse handle(String productId, String brandId, String applicationDate) {
+        var result = priceRepository.findApplicablePrice(productId, brandId, applicationDate);
+        return mapper.toResponse(result);
     }
 
 }
