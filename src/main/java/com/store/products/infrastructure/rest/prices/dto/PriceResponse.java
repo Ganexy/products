@@ -1,30 +1,31 @@
 package com.store.products.infrastructure.rest.prices.dto;
 
-import java.time.LocalDateTime;
-
-public class PricesResponse {
-    private Long productId;
+public class PriceResponse {
     private String brandId;
     private String priceList;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private String startDate;
+    private String endDate;
+    private String productId;
     private String price;
 
-    public PricesResponse(Long productId, String brandId, String priceList, LocalDateTime startDate, LocalDateTime endDate, String price) {
-        this.productId = productId;
+    public PriceResponse(){
+
+    }
+
+    public PriceResponse(
+            String brandId,
+            String priceList,
+            String startDate,
+            String endDate,
+            String productId,
+            String price
+    ) {
         this.brandId = brandId;
         this.priceList = priceList;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.price = price;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
         this.productId = productId;
+        this.price = price;
     }
 
     public String getBrandId() {
@@ -43,20 +44,28 @@ public class PricesResponse {
         this.priceList = priceList;
     }
 
-    public LocalDateTime getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getPrice() {
@@ -66,4 +75,5 @@ public class PricesResponse {
     public void setPrice(String price) {
         this.price = price;
     }
+
 }
