@@ -25,7 +25,7 @@ public class ProductsPriceController {
             @ApiResponse(responseCode = "200", description = "Get the price of a product in the desired date"),
             @ApiResponse(responseCode = "500", description = "Internal server error.")
     })
-    @GetMapping("/prices")
+    @GetMapping("/price")
     public ResponseEntity<PriceResponse> getPrice(
             @RequestParam Long productId,
             @RequestParam String brandId,
