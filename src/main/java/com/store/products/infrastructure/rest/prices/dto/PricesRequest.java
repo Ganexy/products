@@ -3,21 +3,21 @@ package com.store.products.infrastructure.rest.prices.dto;
 import java.time.LocalDateTime;
 
 public class PricesRequest {
-    private String productId;
+    private Long productId;
     private String brandId;
     private LocalDateTime startDate;
 
-    public PricesRequest(String productId, String brandId, LocalDateTime startDate) {
+    public PricesRequest(Long productId, String brandId, LocalDateTime startDate) {
         this.productId = productId;
         this.brandId = brandId;
         this.startDate = startDate;
     }
 
-    public String getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

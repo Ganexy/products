@@ -1,9 +1,17 @@
 package com.store.products.domain.prices.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 
-public class Product {
-    private String brandId;
+@Entity
+public class Price {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long brandId;
     private String priceList;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
@@ -12,7 +20,7 @@ public class Product {
     private String price;
     private String currency;
 
-    public Product(String brandId, String priceList, LocalDateTime startDate, LocalDateTime endDate, String productId, String priority, String price, String currency) {
+    public Price(Long brandId, String priceList, LocalDateTime startDate, LocalDateTime endDate, String productId, String priority, String price, String currency) {
         this.brandId = brandId;
         this.priceList = priceList;
         this.startDate = startDate;
@@ -23,11 +31,11 @@ public class Product {
         this.currency = currency;
     }
 
-    public String getBrandId() {
+    public Long getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(String brandId) {
+    public void setBrandId(Long brandId) {
         this.brandId = brandId;
     }
 
