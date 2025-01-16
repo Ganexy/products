@@ -17,6 +17,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 @Sql(scripts = "/schema.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
@@ -33,7 +34,7 @@ public class ProductsPriceControllerTestIT {
 
     @ParameterizedTest
     @MethodSource("provideTestCases")
-    void shouldReturnCorrectPrice(String productId, String brandId, String applicationDate, int expectedStatus, String expectedPrice) throws Exception {
+    void shouldReturnCorrectPrice(String productId, String brandId, LocalDateTime applicationDate, int expectedStatus, String expectedPrice) throws Exception {
 
         String url = String.format("/products/price?productId=%s&brandId=%s&applicationDate=%s", productId, brandId, applicationDate);
 
@@ -48,11 +49,11 @@ public class ProductsPriceControllerTestIT {
 
     static Stream<Arguments> provideTestCases() {
         return Stream.of(
-                Arguments.of("35455", "1", "2020-06-14 10:00:00", 200 , "35.50"),
-                Arguments.of("35455", "1", "2020-06-14 16:00:00", 200 , "25.45"),
-                Arguments.of("35455", "1", "2020-06-14 21:00:00", 200 , "35.50"),
-                Arguments.of("35455", "1", "2020-06-15 10:00:00", 200 , "35.50"),
-                Arguments.of("35455", "1", "2020-06-16 21:00:00", 200 , "35.50")
+                Arguments.of("35455", "1", "2020-06-14T10:00:00", 200 , "35.50"),
+                Arguments.of("35455", "1", "2020-06-14T16:00:00", 200 , "35.50"),
+                Arguments.of("35455", "1", "2020-06-14T21:00:00", 200 , "35.50"),
+                Arguments.of("35455", "1", "2020-06-15T10:00:00", 200 , "35.50"),
+                Arguments.of("35455", "1", "2020-06-16T21:00:00", 200 , "35.50")
         );
     }
 
