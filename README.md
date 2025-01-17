@@ -6,11 +6,20 @@
 
 ### Dependencias 
 
-* **OpenAPI**
+**OpenAPI**
 
-  Documentación de API con Swagger
+-  Documentación de API con Swagger
 
-  [Local Swagger](http://localhost:8080/swagger-ui/index.html)
+- [Local Swagger](http://localhost:8080/swagger-ui/index.html)
+
+**H2 Database**
+
+- Base de datos en memoria para las pruebas
+
+- Usuario: as
+- Password:
+- JDBC URL: jdbc:h2:mem:testdb
+- [H2 Loggin](http://localhost:8080/h2-console/login.jsp)
 
 
 ### Comentarios
