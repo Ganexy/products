@@ -1,6 +1,9 @@
 package com.store.products.infrastructure.persistance.dto;
 
+import com.store.products.domain.prices.entity.Currency;
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "PRICES")
@@ -14,10 +17,10 @@ public class PriceDTO {
     private String brandId;
 
     @Column(name = "START_DATE", nullable = false)
-    private String startDate;
+    private LocalDateTime startDate;
 
     @Column(name = "END_DATE", nullable = false)
-    private String endDate;
+    private LocalDateTime endDate;
 
     @Column(name = "PRICE_LIST", nullable = false)
     private String priceList;
@@ -29,10 +32,11 @@ public class PriceDTO {
     private Integer priority;
 
     @Column(name = "PRICE", nullable = false)
-    private String price;
+    private Double price;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "CURRENCY", nullable = false)
-    private String currency;
+    private Currency currency;
 
     public PriceDTO() {
 
@@ -54,19 +58,19 @@ public class PriceDTO {
         this.brandId = brandId;
     }
 
-    public String getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -94,19 +98,19 @@ public class PriceDTO {
         this.priority = priority;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 }

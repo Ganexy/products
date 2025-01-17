@@ -1,12 +1,14 @@
 package com.store.products.infrastructure.rest.dto;
 
+import java.time.LocalDateTime;
+
 public class PriceResponse {
     private String brandId;
     private String priceList;
-    private String startDate;
-    private String endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private String productId;
-    private String price;
+    private Double price;
 
     public PriceResponse() {
 
@@ -28,19 +30,19 @@ public class PriceResponse {
         this.priceList = priceList;
     }
 
-    public String getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -52,11 +54,11 @@ public class PriceResponse {
         this.productId = productId;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
