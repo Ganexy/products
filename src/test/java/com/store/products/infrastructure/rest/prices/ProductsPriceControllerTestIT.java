@@ -12,10 +12,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
@@ -38,17 +34,17 @@ class ProductsPriceControllerTestIT {
 
     static Stream<Arguments> provideTestCases() {
         return Stream.of(
-                Arguments.of("35455", "1", "2020-06-14T10:00:00", "35.50"),
-                Arguments.of("35455", "1", "2020-06-14T16:00:00", "25.45"),
-                Arguments.of("35455", "1", "2020-06-14T21:00:00", "35.50"),
-                Arguments.of("35455", "1", "2020-06-15T10:00:00", "30.50"),
-                Arguments.of("35455", "1", "2020-06-16T21:00:00", "38.95")
+                Arguments.of("35455", "1", "2020-06-14T10:00:00", 35.50),
+                Arguments.of("35455", "1", "2020-06-14T16:00:00", 25.45),
+                Arguments.of("35455", "1", "2020-06-14T21:00:00", 35.50),
+                Arguments.of("35455", "1", "2020-06-15T10:00:00", 30.50),
+                Arguments.of("35455", "1", "2020-06-16T21:00:00", 38.95)
         );
     }
 
     @ParameterizedTest
     @MethodSource("provideTestCases")
-    void shouldReturnCorrectPrice(String productId, String brandId, LocalDateTime applicationDate, String expectedPrice) throws Exception {
+    void shouldReturnCorrectPrice(String productId, String brandId, LocalDateTime applicationDate, Double expectedPrice) throws Exception {
 
         mockMvc.perform(
                         get("/products/price")
