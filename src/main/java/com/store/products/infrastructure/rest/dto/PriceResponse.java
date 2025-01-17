@@ -12,22 +12,6 @@ public class PriceResponse {
 
     }
 
-    public PriceResponse(
-            String brandId,
-            String priceList,
-            String startDate,
-            String endDate,
-            String productId,
-            String price
-    ) {
-        this.brandId = brandId;
-        this.priceList = priceList;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.productId = productId;
-        this.price = price;
-    }
-
     public String getBrandId() {
         return brandId;
     }
