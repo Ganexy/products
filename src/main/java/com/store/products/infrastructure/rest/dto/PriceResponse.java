@@ -1,4 +1,4 @@
-package com.store.products.infrastructure.rest.prices.dto;
+package com.store.products.infrastructure.rest.dto;
 
 public class PriceResponse {
     private String brandId;
@@ -8,7 +8,7 @@ public class PriceResponse {
     private String productId;
     private String price;
 
-    public PriceResponse(){
+    public PriceResponse() {
 
     }
 

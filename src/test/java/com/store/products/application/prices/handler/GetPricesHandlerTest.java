@@ -1,29 +1,23 @@
 package com.store.products.application.prices.handler;
 
 import com.store.products.domain.prices.entity.Price;
+import com.store.products.domain.prices.exception.PriceNotFoundException;
 import com.store.products.domain.prices.repository.PriceRepository;
-import com.store.products.infrastructure.rest.exception.PriceNotFoundException;
-import com.store.products.infrastructure.rest.prices.dto.PriceResponse;
-import com.store.products.infrastructure.rest.prices.mapper.PricesMapper;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.jdbc.Sql;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 
-@DataJpaTest
-@Sql(scripts = {"/schema.sql", "/data.sql"})
+@ExtendWith(MockitoExtension.class)
 class GetPricesHandlerTest {
 
     @Mock
     private PriceRepository priceRepository;
-
-    @Mock
-    private PricesMapper pricesMapper;
 
     @InjectMocks
     private GetPricesHandler getPricesHandler;
@@ -35,34 +29,29 @@ class GetPricesHandlerTest {
         String applicationDate = "2020-06-14 10:00:00";
         String expectedPrice = "25.45";
 
-        var price = new Price();
-        price.setProductId(productId);
-        price.setBrandId(brandId);
-        price.setPrice(expectedPrice);
-        price.setStartDate("2020-06-14 00:00:00");
-        price.setEndDate("2020-12-31 23:59:59");
-        price.setCurrency("EUR");
-
-        var response = new PriceResponse();
-        response.setProductId(productId);
-        response.setBrandId(brandId);
-        response.setPrice(expectedPrice);
-        response.setStartDate("2020-06-14 00:00:00");
-        response.setEndDate("2020-12-31 23:59:59");
+        var price = new Price(
+                1L,
+                brandId,
+                "2020-06-14 00:00:00",
+                "2020-06-14 00:00:00",
+                "1",
+                "35455",
+                0,
+                expectedPrice,
+                "EUR"
+        );
 
         when(priceRepository.findApplicablePrice(productId, brandId, applicationDate))
                 .thenReturn(price);
-        when(pricesMapper.toResponse(price)).thenReturn(response);
 
         var result = getPricesHandler.handle(productId, brandId, applicationDate);
 
         assertNotNull(result);
-        assertEquals(productId, result.getProductId());
-        assertEquals(expectedPrice, result.getPrice());
-        assertEquals("2020-06-14 00:00:00", result.getStartDate());
+        assertEquals(productId, result.productId());
+        assertEquals(expectedPrice, result.price());
+        assertEquals("2020-06-14 00:00:00", result.startDate());
 
         verify(priceRepository, times(1)).findApplicablePrice(productId, brandId, applicationDate);
-        verify(pricesMapper, times(1)).toResponse(price);
     }
 
     @Test
@@ -80,7 +69,6 @@ class GetPricesHandlerTest {
         );
 
         verify(priceRepository, times(1)).findApplicablePrice(productId, brandId, applicationDate);
-        verify(pricesMapper, times(0)).toResponse(any());
     }
 
 }

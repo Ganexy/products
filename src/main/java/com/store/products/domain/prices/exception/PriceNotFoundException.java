@@ -1,6 +1,6 @@
-package com.store.products.infrastructure.rest.exception;
+package com.store.products.domain.prices.exception;
 
-public class PriceNotFoundException extends RuntimeException{
+public class PriceNotFoundException extends RuntimeException {
 
     public PriceNotFoundException(String message) {
         super(message);
