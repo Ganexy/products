@@ -21,6 +21,5 @@
 - JDBC URL: jdbc:h2:mem:testdb
 - [H2 Loggin](http://localhost:8080/h2-console/login.jsp)
 
-
 ### Comentarios
 * En este escenario, al no encontrar un precio que cumpla con los requisitos de brandId, productId y la fecha requerida he decidido devolver una excepción personalizada.
