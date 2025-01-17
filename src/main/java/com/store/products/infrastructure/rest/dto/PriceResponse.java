@@ -1,4 +1,4 @@
-package com.store.products.infrastructure.rest.prices.dto;
+package com.store.products.infrastructure.rest.dto;
 
 public class PriceResponse {
     private String brandId;
@@ -8,24 +8,8 @@ public class PriceResponse {
     private String productId;
     private String price;
 
-    public PriceResponse(){
+    public PriceResponse() {
 
-    }
-
-    public PriceResponse(
-            String brandId,
-            String priceList,
-            String startDate,
-            String endDate,
-            String productId,
-            String price
-    ) {
-        this.brandId = brandId;
-        this.priceList = priceList;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.productId = productId;
-        this.price = price;
     }
 
     public String getBrandId() {

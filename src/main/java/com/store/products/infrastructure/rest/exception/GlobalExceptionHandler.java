@@ -1,5 +1,6 @@
 package com.store.products.infrastructure.rest.exception;
 
+import com.store.products.domain.prices.exception.PriceNotFoundException;
 import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
